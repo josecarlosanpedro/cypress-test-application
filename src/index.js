@@ -12,14 +12,16 @@ import rootEpic from "./stores/actions";
 import serviceWorker from "./serviceWorker";
 
 const composeEnhancers =
-  process.env.NODE_ENV === "development"
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    : null || compose;
+    (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'dev') &&
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ :
+    compose;
 
 const epicMiddleware = createEpicMiddleware();
+
 const store = createStore(
-  rootReducer,
-  composeEnhancers(applyMiddleware(epicMiddleware))
+    rootReducer,
+    composeEnhancers(applyMiddleware(epicMiddleware)),
 );
 epicMiddleware.run(rootEpic);
 ReactDOM.render(
