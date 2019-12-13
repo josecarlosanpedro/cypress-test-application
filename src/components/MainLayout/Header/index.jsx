@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Button from 'antd/lib/button'
+// import Button from 'antd/lib/button'
 
 import { withRouter } from 'react-router-dom';
 class Header extends Component {
@@ -14,7 +14,7 @@ class Header extends Component {
       <section className="header-section">
             {/* Sample testing application */}
             <span className="username">{username}</span>
-            <Button onClick={this.handleLogout} id="logout">Logout</Button>
+            <button onClick={this.handleLogout} id="logout">Logout</button>
       </section>
     );
   }

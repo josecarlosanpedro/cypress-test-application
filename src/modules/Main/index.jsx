@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import logo from './logo.svg';
 import Input from 'antd/lib/input'
-import Button from 'antd/lib/button'
+// import Button from 'antd/lib/button'
 class Login extends Component {
   state = {
     username: "",
@@ -27,7 +27,7 @@ class Login extends Component {
         <Input id="username" className="_spacer-sm" onChange={e => this.setState({username: e.target.value})} />
         <Input.Password id="password" className="_spacer-sm" onChange={e => this.setState({password: e.target.value})}/>
         {this.state.error && <p className="error-message">Incorrect username and password</p>}
-        <Button id="login" className="_spacer-sm" onClick={this.handleLogin}> Login </Button>
+        <button id="login" className="_spacer-sm" onClick={this.handleLogin}> Login </button>
       </section>
     );
   }
