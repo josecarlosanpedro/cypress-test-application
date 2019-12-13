@@ -1,27 +1,36 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import logo from './logo.svg';
+import Input from 'antd/lib/input'
+import Button from 'antd/lib/button'
+class Login extends Component {
+  state = {
+    username: "",
+    password: "",
+    error: false
+  }
+  handleLogin = () => {
+    const { username, password } = this.state
+    
+    if (username === "admin" && password === "admin") {
+      localStorage.setItem('login', true);
+      localStorage.setItem('username', "admin");
+      window.location = "/Home"
+    } else {
+      this.setState({error: true})
+    }
 
-class App extends Component {
+  }
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <section className="login-section">
+        <h4 className="login-title">Cypress testing app</h4>
+        <Input id="username" className="_spacer-sm" onChange={e => this.setState({username: e.target.value})} />
+        <Input.Password id="password" className="_spacer-sm" onChange={e => this.setState({password: e.target.value})}/>
+        {this.state.error && <p className="error-message">Incorrect username and password</p>}
+        <Button id="login" className="_spacer-sm" onClick={this.handleLogin}> Login </Button>
+      </section>
     );
   }
 }
 
-export default App;
+export default Login;
